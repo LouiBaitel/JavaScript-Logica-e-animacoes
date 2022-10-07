@@ -1,0 +1,46 @@
+<canvas width="600" height="400"> </canvas>
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    // Definimos um array com três cores para serem mudadas conforme os cliques
+    var cores = ['blue', 'red', 'green'];
+    var indiceCorAtual = 0;
+
+    // A variável evento, é retornada pelo navegador quando clicamos dentro do canvas. Ela fornece as coordenadas em X e Y de onde foi feito o click com o mouse 
+    // com evento.pageX e evento.pageY pegamos as coordenadas do click.
+    // É subtraído  de X o valor da esquerda da tela e de Y o valor do topo da tela. Fizemos isso para que não tenha erro nas coordenadas, devido ao espaço branco da tela na esquerda e direita.
+    function exibeCirculo(evento) {
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        pincel.fillStyle = 'blue';
+        pincel.beginPath();
+        pincel.arc(x, y,10,0,2*3.14);
+        pincel.fill();
+
+        alert(x + ',' + y );
+    }
+
+    // a exibe alerta é chamada somente quando temos o clique na tela
+    // Vale lembrar a necessidade de chamar a função sem (), pois ela só vai ser 'ativada' quando tiver um click na tela.
+    tela.onclick = exibeCirculo;
+        // Esse é o código responsável pela lógica esperada:
+    /*
+    A cada clique do botão DIREITO do mouse, a cor padrão, que é blue, deverá se tornar red. Se o usuário clicar mais uma vez com o botão DIREITO, a cor escolhida deverá ser green, nessa ordem. Por fim, se clicarmos novamente, voltamos para a cor blue e repetimos a ordem de seleção de cores.
+    Obs: com o botão ESQUERDO faremos os cliques para as bolinhas aparecerem.
+    */
+   
+    function mudaCor(){
+        indiceCorAtual++;
+        if (indiceCorAtual >= cores.length) {
+            indiceCorAtual = 0;
+        }
+        return false;
+    }
+
+    tela.oncontextmenu = mudaCor;
+</script>

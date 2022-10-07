@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+
+<!-- A tag canvas é a responsável por criar uma tela  -->
+<canvas width="600" height="400"> </canvas>
+
+<script type="text/javascript">
+    /* Criamos uma variável para tela que chama o que estiver dentro da tag canvas */
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    /* Aqui nós passamos as coodenadas de onde o pincel vai aparecer (x e y) e largura e altura, bem como a cor */
+    pincel.fillStyle = 'lightgrey';
+    pincel.fillRect(0, 0, 600, 400);
+    
+    /* O fillRect() precisa de algumas informações para conseguir desenhar o retângulo, que estarão na ordem: posição inicial X do “pincel”, posição inicial Y do “pincel”, posição final X do “pincel”, posição final Y do “pincel”. */
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0,0, 200, 400)
+
+    pincel.fillStyle = 'black';
+    pincel.fillRect(0, 0, 600, 30)
+    /*Basicamente, o fillStyle define a cor e o fillRect cria um retangulo com o tamanho específicado. */
+
+     // Para iniciarmos o triângulo temos que entender que o Eixo X (Largura) vai de 0 a 600 e o Eixo Y (Altura) vai de 0 a 400
+
+    pincel.fillStyle = "yellow"; // preciso escolher a cor antes de começar a fazer as linhas, senão irá pintar com a última cor usada
+    pincel.beginPath(); // aqui eu indico que irei iniciar o caminho, as linhas
+    pincel.moveTo(300,200); // indiquei que coloquei o pincel para iniciar na posição do eixo X em 300 e na posição do eixo y em 200
+    pincel.lineTo(200,400); // criei uma linha que vai da posição inicial até a posição do eixo X em 200 e do eixo Y em 400
+    pincel.lineTo(400,400); // criei uma linha que vai da última posição até a posição do eixo X em 400 e do eixo Y em 400
+    pincel.fill(); // com a função .fill eu pedi para que fosse preenchida essas linhas
+
+    // Notem que não precisou ser feita uma outra linha fechando o triângulo para que pudesse ser feito o preenchimento. Não sei se o sistema já entende que aquele é último ponto e automaticamente "fecha" a linha do último ponto com o ponto inicial e faz o preenchimento. 
+    
+    pincel.fillStyle = 'blue';
+    pincel.beginPath();
+    pincel.arc(300,200,50,0,2*3.14)
+    pincel.fill();
+</script>
